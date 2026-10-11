@@ -23,8 +23,12 @@ export default function App() {
       formData.append("resume", selectedFile);
       formData.append("jobDescription", jobDescription);
       const response = await fetch("/api/analyze", { method: "POST", body: formData });
-      const payload = await response.json();
-      if (!response.ok) throw new Error(payload.message || "Unable to analyze this resume.");
+      const contentType = response.headers.get("content-type") || "";
+      const payload = contentType.includes("application/json") ? await response.json() : null;
+      if (!response.ok) {
+        throw new Error(payload?.message || `The server could not analyze the resume (HTTP ${response.status}).`);
+      }
+      if (!payload) throw new Error("The server returned an unexpected response.");
       setResult(payload);
       setStage("results");
       requestAnimationFrame(() =>

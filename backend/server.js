@@ -26,7 +26,7 @@ async function startServer() {
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 }
 
-if (process.env.NODE_ENV !== "test") {
+if (process.env.NODE_ENV !== "test" && !process.env.VERCEL) {
   startServer().catch((error) => {
     console.error("Failed to start server:", error.message);
     process.exit(1);
@@ -34,5 +34,3 @@ if (process.env.NODE_ENV !== "test") {
 }
 
 export default app;
-`)
-```
