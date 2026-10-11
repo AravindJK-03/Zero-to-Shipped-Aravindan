@@ -237,6 +237,12 @@ img { max-width: 100%; }
   margin-bottom: 2rem;
 }
 
+.job-description { display: grid; gap: .5rem; width: 100%; max-width: 420px; margin-bottom: 1.25rem; font-weight: 600; }
+.job-description textarea { width: 100%; resize: vertical; padding: .8rem; border: 1px solid var(--clr-border); border-radius: var(--radius-sm); background: var(--clr-surface); color: var(--clr-text); font: inherit; font-size: .9rem; }
+.job-description textarea:focus { outline: 2px solid var(--clr-accent); border-color: transparent; }
+.btn:disabled { cursor: not-allowed; opacity: .55; transform: none; }
+.form-error { color: var(--clr-danger); margin-top: 1rem; }
+
 .upload-zone {
   position: relative;
   width: 100%;

@@ -1,0 +1,15 @@
+export const SKILL_CATALOG = [
+  { name: "JavaScript", terms: ["javascript", "js"] },
+  { name: "TypeScript", terms: ["typescript", "ts"] },
+  { name: "React", terms: ["react", "react.js", "reactjs"] },
+  { name: "Node.js", terms: ["node.js", "nodejs", "node"] },
+  { name: "HTML & CSS", terms: ["html", "css"] },
+  { name: "REST APIs", terms: ["rest api", "restful", "api"] },
+  { name: "Git & GitHub", terms: ["git", "github"] },
+  { name: "Docker", terms: ["docker"] },
+  { name: "CI/CD Pipelines", terms: ["ci/cd", "continuous integration", "continuous delivery"] },
+  { name: "System Design", terms: ["system design", "distributed systems"] },
+  { name: "AWS / Cloud Services", terms: ["aws", "azure", "gcp", "cloud"] },
+  { name: "GraphQL", terms: ["graphql"] },
+  { name: "Testing", terms: ["jest", "cypress", "testing", "test automation"] },
+];
