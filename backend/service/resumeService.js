@@ -1,8 +1,9 @@
+import { CanvasFactory } from "pdf-parse/worker";
 import { PDFParse } from "pdf-parse";
 import { SKILL_CATALOG } from "../utils.js";
 
 export async function extractTextFromPdf(buffer) {
-  const parser = new PDFParse({ data: buffer });
+  const parser = new PDFParse({ data: buffer, CanvasFactory });
   try {
     return (await parser.getText()).text;
   } finally {
