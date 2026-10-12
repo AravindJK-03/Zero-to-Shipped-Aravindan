@@ -12,15 +12,21 @@ export async function extractTextFromPdf(buffer) {
 }
 
 export function compareResumeToJobDescription(resumeText, jobDescription) {
-  const resume = resumeText.toLowerCase();
-  const job = jobDescription.toLowerCase();
-  const requestedSkills = SKILL_CATALOG.filter((skill) => skill.terms.some((term) => job.includes(term)));
+  const requestedSkills = SKILL_CATALOG.filter((skill) => hasSkill(jobDescription, skill.terms));
   const presentSkills = requestedSkills
-    .filter((skill) => skill.terms.some((term) => resume.includes(term)))
+    .filter((skill) => hasSkill(resumeText, skill.terms))
     .map((skill) => skill.name);
   const missingSkills = requestedSkills
     .filter((skill) => !presentSkills.includes(skill.name))
     .map((skill) => skill.name);
   const score = requestedSkills.length ? Math.round((presentSkills.length / requestedSkills.length) * 100) : 0;
   return { score, presentSkills, missingSkills };
+}
+
+function hasSkill(text, terms) {
+  return terms.some((term) => {
+    const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const pattern = new RegExp(`(^|[^a-z0-9+#])${escapedTerm}(?=$|[^a-z0-9+#])`, "i");
+    return pattern.test(text);
+  });
 }
